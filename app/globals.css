@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-playfair: "Playfair Display", serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+/* ------------------------------------------
+   LIGHT THEME — USING YOUR PINK COLOR PALETTE
+------------------------------------------- */
+:root {
+  --background: #fae0e4; /* misty-rose */
+  --foreground: #2c1810;
+
+  --card: #fff9fb;
+  --card-foreground: #2c1810;
+
+  --popover: #fff9fb;
+  --popover-foreground: #2c1810;
+
+  --primary: #ff0a54; /* folly */
+  --primary-foreground: #ffffff;
+
+  --secondary: #ff477e; /* french-rose */
+  --secondary-foreground: #ffffff;
+
+  --muted: #fbb1bd; /* cherry-blossom-pink */
+  --muted-foreground: #6b5344;
+
+  --accent: #ff5c8a; /* bright-pink-crayola */
+  --accent-foreground: #ffffff;
+
+  --destructive: #ff0a54;
+  --destructive-foreground: #ffffff;
+
+  --border: #f7cad0; /* tea-rose-red */
+  --input: #ffe9ef;
+  --ring: #ff7096; /* rose-pompadour */
+
+  /* CHART COLORS (5 Shades) */
+  --chart-1: #ff0a54;
+  --chart-2: #ff477e;
+  --chart-3: #ff7096;
+  --chart-4: #ff99ac;
+  --chart-5: #fbb1bd;
+
+  --radius: 0.625rem;
+
+  /* Sidebar System */
+  --sidebar: #fae0e4;
+  --sidebar-foreground: #2c1810;
+
+  --sidebar-primary: #ff0a54;
+  --sidebar-primary-foreground: #ffffff;
+
+  --sidebar-accent: #ff5c8a;
+  --sidebar-accent-foreground: #ffffff;
+
+  --sidebar-border: #f7cad0;
+  --sidebar-ring: #ff7096;
+}
+
+/* ------------------------------------------
+   DARK THEME — DEEPER ROSE + PINK SHADES
+------------------------------------------- */
+.dark {
+  --background: #2c0e1c; /* dark rosy purple */
+  --foreground: #fae0e4;
+
+  --card: #3a1026;
+  --card-foreground: #ffffff;
+
+  --popover: #3a1026;
+  --popover-foreground: #ffffff;
+
+  --primary: #ff477e; /* slightly brighter in dark */
+  --primary-foreground: #1a0a0f;
+
+  --secondary: #ff7096;
+  --secondary-foreground: #1a0a0f;
+
+  --muted: #6b5344;
+  --muted-foreground: #fbb1bd;
+
+  --accent: #ff99ac;
+  --accent-foreground: #1a0a0f;
+
+  --destructive: #ff0a54;
+  --destructive-foreground: #1a0a0f;
+
+  --border: #6b2644;
+  --input: #30101e;
+  --ring: #ff5c8a;
+
+  --chart-1: #ff477e;
+  --chart-2: #ff7096;
+  --chart-3: #ff5c8a;
+  --chart-4: #ff99ac;
+  --chart-5: #fae0e4;
+
+  /* Sidebar */
+  --sidebar: #3a1026;
+  --sidebar-foreground: #fae0e4;
+
+  --sidebar-primary: #ff477e;
+  --sidebar-primary-foreground: #1a0a0f;
+
+  --sidebar-accent: #ff5c8a;
+  --sidebar-accent-foreground: #1a0a0f;
+
+  --sidebar-border: #6b2644;
+  --sidebar-ring: #ff5c8a;
+}
+
+/* ------------------------------------------
+   Tailwind v0.dev theme variables
+------------------------------------------- */
+@theme inline {
+  --font-sans: "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ------------------------------------------
+   Base styles
+------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
