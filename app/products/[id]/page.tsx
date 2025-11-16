@@ -7,13 +7,24 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ShoppingCart, Check } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams } from "next/navigation";
 
 export default function ProductDetailsPage() {
   const params = useParams();
   const productId = params.id as string;
-  const product = products.find((p) => p.id === productId);
+
+  // Use useMemo to ensure consistent product and related products
+  const product = useMemo(
+    () => products.find((p) => p.id === productId),
+    [productId],
+  );
+
+  const relatedProducts = useMemo(
+    () => products.filter((p) => p.id !== productId).slice(0, 3),
+    [productId],
+  );
+
   const [isAdded, setIsAdded] = useState(false);
 
   if (!product) {
@@ -32,10 +43,6 @@ export default function ProductDetailsPage() {
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
   };
-
-  const relatedProducts = products
-    .filter((p) => p.id !== product.id)
-    .slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -117,24 +124,28 @@ export default function ProductDetailsPage() {
             </motion.div>
           </div>
 
-          {/* Related Products */}
+          {/* Related Products - Always render if we have products */}
           {relatedProducts.length > 0 && (
             <div className="mt-16 md:mt-24">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.5 }}
               >
                 <h2 className="text-3xl font-bold text-foreground mb-8">
                   You May Also Like
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  {relatedProducts.map((relatedProduct) => (
+                  {relatedProducts.map((relatedProduct, index) => (
                     <Link
                       key={relatedProduct.id}
                       href={`/products/${relatedProduct.id}`}
                     >
                       <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
                         whileHover={{ translateY: -4 }}
                         className="bg-card rounded-lg overflow-hidden border border-border hover:border-primary transition-colors cursor-pointer"
                       >

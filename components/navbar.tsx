@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Leaf, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,17 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-sm">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20 md:h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-              <Leaf className="w-8 h-8 text-primary" />
+              <Image
+                src={"/Logo.png"}
+                alt="logo.png"
+                width={100}
+                height={200}
+                className="w-24 h-24 md:w-32 md:h-32 text-primary"
+              />
             </motion.div>
             <span className="font-semibold text-lg text-foreground hidden sm:inline">
               Shreejana Home Packing Udhog
